@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 class Home extends React.Component {
     render() {
         return (
-            <div>
+            <div className="container">
                 <img src="https://letstalkpayments.com/wp-content/uploads/2016/04/Bank.png" alt="bank" />
                 <h1>Bank of React</h1>
 
@@ -13,6 +13,7 @@ class Home extends React.Component {
                 <AccountBalance
                     accountBalance={this.props.accountBalance}
                 />
+                <Link to='/debit'>Debit</Link>
             </div>
         )
     }

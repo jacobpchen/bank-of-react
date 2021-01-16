@@ -2,6 +2,7 @@ import React from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './components/Home'
 import LogIn from './components/Login'
+import Debit from './components/Debits'
 import UserProfile from './components/UserProfile'
 class App extends React.Component {
   constructor() {
@@ -40,12 +41,17 @@ class App extends React.Component {
         {...this.props} />
     )
 
+    const debitComponent = () => (
+      <Debit accountBalance={this.state.accountBalance} />
+    )
+
     return (
       <Router>
         <Switch>
           <Route exact path='/' render={HomeComponent} />
           <Route path='/userProfile' render={UserProfileComponent} />
           <Route exact path='/login' render={LogInComponent} />
+          <Route path='/debit' render={debitComponent} />
         </Switch>
       </Router>
     )
