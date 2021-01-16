@@ -1,17 +1,24 @@
 import React from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './components/Home'
+import LogIn from './components/Login'
 import UserProfile from './components/UserProfile'
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      accountBalance: 14568.27,
+      accountBalance: 0.00,
       currentUser: {
         userName: 'bob_loblaw',
         memberSince: '08/23/99'
       }
     }
+  }
+
+  mockLogIn = (logInInfo) => {
+    const newUser = { ...this.state.currentUser }
+    newUser.userName = logInInfo.userName
+    this.setState({ currentUser: newUser })
   }
 
   render() {
@@ -26,11 +33,19 @@ class App extends React.Component {
       />
     )
 
+    const LogInComponent = () => (
+      <LogIn
+        user={this.state.currentUser}
+        mockLogIn={this.mockLogIn}
+        {...this.props} />
+    )
+
     return (
       <Router>
         <Switch>
           <Route exact path='/' render={HomeComponent} />
           <Route path='/userProfile' render={UserProfileComponent} />
+          <Route exact path='/login' render={LogInComponent} />
         </Switch>
       </Router>
     )
