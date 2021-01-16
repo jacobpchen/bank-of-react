@@ -70,8 +70,27 @@ class Debit extends React.Component {
                     />
                 </div>
 
+                <div className="container">
+                    <form>
+                        <div class="form-group">
+                            <label for="debitDescription">Debit Description</label>
+                            <input type="text" class="form-control"
+                                id="debitDescription"
+                                placeholder="Enter description of the debit" />
+                        </div>
 
+                        <div class="form-group">
+                            <label for="debitAmount">Debit Amount</label>
+                            <input type="text" class="form-control"
+                                id="debitAmount"
+                                placeholder="Enter amount of the debit" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
+
         )
     }
 }
