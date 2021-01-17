@@ -12,6 +12,10 @@ class App extends React.Component {
       currentUser: {
         userName: 'bob_loblaw',
         memberSince: '08/23/99'
+      },
+      debit: {
+        debitAmount: ' ',
+        debitDescription: ' '
       }
     }
   }
@@ -20,6 +24,18 @@ class App extends React.Component {
     const newUser = { ...this.state.currentUser }
     newUser.userName = logInInfo.userName
     this.setState({ currentUser: newUser })
+  }
+
+  addDebit = (d) => {
+    console.log("Inside add debit")
+    const newDebit = { ...this.state.debit }
+    newDebit.debitAmount = d.debitAmount
+    newDebit.debitDescription = d.debitDescription
+    console.log("This is the new debit")
+    console.log(newDebit)
+    this.setState({
+      debit: newDebit
+    })
   }
 
   render() {
@@ -42,7 +58,9 @@ class App extends React.Component {
     )
 
     const debitComponent = () => (
-      <Debit accountBalance={this.state.accountBalance} />
+      <Debit
+        accountBalance={this.state.accountBalance}
+        addDebit={this.addDebit} />
     )
 
     return (

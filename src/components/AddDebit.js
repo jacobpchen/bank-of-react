@@ -1,5 +1,13 @@
 import React from 'react'
 
-class AddDebit extends React.Component {
+function AddDebit(props) {
 
+    return (
+        <div>
+            {props.description}
+            {props.amount}
+        </div>
+    )
 }
+
+export default AddDebit
