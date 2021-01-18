@@ -14,6 +14,7 @@ class Home extends React.Component {
                     accountBalance={this.props.accountBalance}
                 />
                 <Link to='/debit'>Debit</Link>
+                <Link to='/credit'>Credit</Link>
             </div>
         )
     }

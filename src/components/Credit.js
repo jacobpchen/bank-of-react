@@ -1,17 +1,17 @@
 import React from 'react'
 import axios from 'axios'
 import AccountBalance from './AccountBalance'
-import AddDebit from './AddDebit'
+import AddCredit from './AddCredit'
 import { Link } from 'react-router-dom'
 import Home from './Home'
 
-class Debit extends React.Component {
+class Credit extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: 'https://moj-api.herokuapp.com/debits',
+            url: 'https://moj-api.herokuapp.com/credits',
             data: [],
-            debit: {
+            credit: {
                 description: '',
                 amount: '',
                 date: ''
@@ -19,22 +19,21 @@ class Debit extends React.Component {
         }
     }
 
-    // get the changes and save it to the object debit
+    // get the changes and save it to the object credit
     handleChange = (e) => {
-        const newDebit = { ...this.state.debit }
+        const newcredit = { ...this.state.credit }
         const input = e.target.name
         const value = e.target.value
-        newDebit[input] = value
+        newcredit[input] = value
         this.setState({
-            debit: newDebit
+            credit: newcredit
         })
-
     }
 
-    // Take the object debit and push it to the data array
+    // Take the object credit and push it to the data array
     handleSubmit = (e) => {
         e.preventDefault()
-        this.state.data.push(this.state.debit)
+        this.state.data.push(this.state.credit)
     }
 
     componentDidMount() {
@@ -51,7 +50,7 @@ class Debit extends React.Component {
     render() {
         return (
             <div className="container">
-                <h1>Debits</h1>
+                <h1>credits</h1>
                 {/* Print headers for the columns */}
                 <div className="container">
                     <div class="row">
@@ -63,7 +62,7 @@ class Debit extends React.Component {
 
                 {/* Print the date, description and amount */}
                 <div className="container">
-                    <AddDebit
+                    <AddCredit
                         data={this.state.data}
                     />
                 </div>
@@ -77,19 +76,19 @@ class Debit extends React.Component {
                 <div className="container">
                     <form>
                         <div className="form-group">
-                            <label htmlFor="debitDescription">Debit Description</label>
+                            <label htmlFor="creditDescription">credit Description</label>
                             <input type="text" className="form-control"
                                 name="description"
                                 onChange={this.handleChange}
-                                placeholder="Enter description of the debit" />
+                                placeholder="Enter description of the credit" />
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="debitAmount">Debit Amount</label>
+                            <label htmlFor="creditAmount">credit Amount</label>
                             <input type="text" className="form-control"
                                 name="amount"
                                 onChange={this.handleChange}
-                                placeholder="Enter amount of the debit" />
+                                placeholder="Enter amount of the credit" />
                         </div>
 
                         <button
@@ -105,4 +104,4 @@ class Debit extends React.Component {
     }
 }
 
-export default Debit
+export default Credit

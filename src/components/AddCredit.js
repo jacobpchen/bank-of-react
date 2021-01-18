@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AddDebit(props) {
+function Addcredit(props) {
     console.log(props.data)
     const date = new Date()
     console.log(date)
@@ -35,4 +35,4 @@ function AddDebit(props) {
     )
 }
 
-export default AddDebit
+export default Addcredit
