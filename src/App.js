@@ -60,7 +60,9 @@ class App extends React.Component {
     const debitComponent = () => (
       <Debit
         accountBalance={this.state.accountBalance}
-        addDebit={this.addDebit} />
+        addDebit={this.addDebit}
+        newDebit={this.state.debit}
+      />
     )
 
     return (
