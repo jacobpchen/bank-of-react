@@ -1,4 +1,5 @@
 import React from 'react'
+import NumberFormat from 'react-number-format'
 
 function Addcredit(props) {
     console.log(props.data)
@@ -25,7 +26,12 @@ function Addcredit(props) {
                 <div className="col-sm">
                     {props.data.map(data =>
                         <div key={data.id}>
-                            {data.amount}
+                            <NumberFormat
+                                value={data.amount}
+                                displayType={'text'}
+                                thousandSeperator={true}
+                                prefix={'$'}
+                            />
                         </div>
                     )}
 

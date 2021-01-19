@@ -3,7 +3,6 @@ import axios from 'axios'
 import AccountBalance from './AccountBalance'
 import AddCredit from './AddCredit'
 import { Link } from 'react-router-dom'
-import Home from './Home'
 
 class Credit extends React.Component {
     constructor(props) {
@@ -89,6 +88,7 @@ class Credit extends React.Component {
                 <div className="container">
                     <AccountBalance
                         accountBalance={this.props.accountBalance}
+                        debit={this.props.debit}
                         credit={this.state.totalCredit}
                     />
                 </div>
@@ -117,7 +117,6 @@ class Credit extends React.Component {
                             onClick={(this.handleSubmit)}>
                             Submit</button>
                     </form>
-                    <div>The total credit is: {this.state.totalCredit}</div>
                 </div>
                 <Link to='/'>Home</Link>
             </div>
