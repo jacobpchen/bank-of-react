@@ -14,8 +14,9 @@ class Credit extends React.Component {
             credit: {
                 description: '',
                 amount: '',
-                date: ''
-            }
+                date: '',
+            },
+            totalCredit: 0
         }
     }
 
@@ -33,7 +34,25 @@ class Credit extends React.Component {
     // Take the object credit and push it to the data array
     handleSubmit = (e) => {
         e.preventDefault()
-        this.state.data.push(this.state.credit)
+        const tempData = [...this.state.data, this.state.credit]
+        this.setState({
+            data: tempData
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.data !== this.state.data) {
+            let credit = 0
+            this.state.data.map(index => {
+                let amount = parseFloat(index.amount)
+                credit += amount
+            })
+            this.setState({
+                totalCredit: credit
+            })
+            console.log("The updated credit is: ")
+            console.log(credit)
+        }
     }
 
     componentDidMount() {
@@ -50,7 +69,7 @@ class Credit extends React.Component {
     render() {
         return (
             <div className="container">
-                <h1>credits</h1>
+                <h1>Credits</h1>
                 {/* Print headers for the columns */}
                 <div className="container">
                     <div class="row">
@@ -70,13 +89,14 @@ class Credit extends React.Component {
                 <div className="container">
                     <AccountBalance
                         accountBalance={this.props.accountBalance}
+                        credit={this.state.totalCredit}
                     />
                 </div>
 
                 <div className="container">
                     <form>
                         <div className="form-group">
-                            <label htmlFor="creditDescription">credit Description</label>
+                            <label htmlFor="creditDescription">Credit Description</label>
                             <input type="text" className="form-control"
                                 name="description"
                                 onChange={this.handleChange}
@@ -97,6 +117,7 @@ class Credit extends React.Component {
                             onClick={(this.handleSubmit)}>
                             Submit</button>
                     </form>
+                    <div>The total credit is: {this.state.totalCredit}</div>
                 </div>
                 <Link to='/'>Home</Link>
             </div>

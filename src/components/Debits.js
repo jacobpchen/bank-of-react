@@ -14,8 +14,9 @@ class Debit extends React.Component {
             debit: {
                 description: '',
                 amount: '',
-                date: ''
-            }
+                date: '',
+            },
+            totalDebit: 0
         }
     }
 
@@ -28,13 +29,30 @@ class Debit extends React.Component {
         this.setState({
             debit: newDebit
         })
-
     }
 
     // Take the object debit and push it to the data array
     handleSubmit = (e) => {
         e.preventDefault()
-        this.state.data.push(this.state.debit)
+        const tempData = [...this.state.data, this.state.debit]
+        this.setState({
+            data: tempData
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.data !== this.state.data) {
+            let debit = 0
+            this.state.data.map(index => {
+                let amount = parseFloat(index.amount)
+                debit += amount
+            })
+            this.setState({
+                totalDebit: debit
+            })
+            console.log("The updated debit is: ")
+            console.log(debit)
+        }
     }
 
     componentDidMount() {
@@ -71,6 +89,7 @@ class Debit extends React.Component {
                 <div className="container">
                     <AccountBalance
                         accountBalance={this.props.accountBalance}
+                        debit={this.state.totalDebit}
                     />
                 </div>
 
@@ -86,7 +105,7 @@ class Debit extends React.Component {
 
                         <div className="form-group">
                             <label htmlFor="debitAmount">Debit Amount</label>
-                            <input type="text" className="form-control"
+                            <input type="number" className="form-control"
                                 name="amount"
                                 onChange={this.handleChange}
                                 placeholder="Enter amount of the debit" />
@@ -98,6 +117,7 @@ class Debit extends React.Component {
                             onClick={(this.handleSubmit)}>
                             Submit</button>
                     </form>
+                    <div>The total debit is: {this.state.totalDebit}</div>
                 </div>
                 <Link to='/'>Home</Link>
             </div>
