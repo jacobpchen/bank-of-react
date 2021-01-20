@@ -1,17 +1,18 @@
 import React from 'react'
 import NumberFormat from 'react-number-format'
-
+import Moment from 'react-moment';
 function Addcredit(props) {
-    console.log(props.data)
-    const date = new Date()
-    console.log(date)
+    const moment = require('moment')
     return (
+
         <div>
             <div className="row">
                 <div className="col-sm">
                     {props.data.map(data =>
                         <div key={data.id}>
-                            {data.date}
+                            {data.date !== ''
+                                ? <Moment format="MM/DD/YYYY">{data.date}</Moment>
+                                : <Moment format="MM/DD/YYYY">{moment()}</Moment>}
                         </div>
                     )}
                 </div>

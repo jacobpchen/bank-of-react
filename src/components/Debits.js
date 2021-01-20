@@ -26,17 +26,19 @@ class Debit extends React.Component {
         const value = e.target.value
         newDebit[input] = value
         this.setState({
-            debit: newDebit
+            debit: newDebit,
         })
     }
 
     // Take the object debit and push it to the data array
     handleSubmit = (e) => {
         e.preventDefault()
+        console.log("Inside Handle submit")
         const tempData = [...this.state.data, this.state.debit]
         this.setState({
-            data: tempData
+            data: tempData,
         })
+        console.log(this.state.data)
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -49,8 +51,7 @@ class Debit extends React.Component {
             this.setState({
                 totalDebit: debit
             })
-            console.log("The updated debit is: ")
-            console.log(debit)
+            console.log(this.state.data)
         }
     }
 
