@@ -119,7 +119,8 @@ class Debit extends React.Component {
                             Submit</button>
                     </form>
                 </div>
-                <Link to='/'>Home</Link>
+                <button type="button" className="btn btn-light m-3"><Link to='/'>Home</Link></button>
+
             </div>
         )
     }
